@@ -2,6 +2,74 @@
  * HELPER FUNCTIONS *
  ********************/
 
+let herbs = function(dino){
+  let newDino = makeDino(dino.species, dino.period, dino.carnivore, dino.extinct)
+  if(newDino.conivore === false){
+    return newDino
+  }
+  
+}
+
+const makeDino = function(species, period, carnivore, extinct = false){
+  let newDino = {
+    species,
+    period,
+    carnivore,
+    extinct,
+  }
+  return newDino
+}
+
+const makeSingular = function(dino){
+  let newDino = makeDino(dino.species, dino.period, dino.carnivore, dino.extinct)
+    if(newDino.species.endsWith('us')){
+      newDino.species = newDino.species.slice(0,-2);
+      return newDino
+    }else return dino
+
+  }
+
+  const truncateSpecies = function(dino){
+    let newDino = makeDino(dino.species, dino.period, dino.carnivore, dino.extinct);
+      if(dino.species.length < 10){
+        return dino
+      }else if(dino.species.length >= 10){
+        newDino.species = newDino.species.slice(0, 7) + '...';
+        return newDino
+      }
+  }
+
+  const makeExtinct = function(dino){
+    let newDino = makeDino(dino.species, dino.period, dino.carnivore, dino.extinct);
+    newDino.extinct = true;
+    return newDino
+  }
+
+  const isCarnivore = function(dino){
+      return dino.carnivore
+    }
+
+  const isExtinct = function(dino){
+    return dino.extinct
+  }
+
+  const isTriassic = function(dino){
+    if(dino.period === 'Triassic'){
+      return true
+    }else return false
+  }
+  
+  const isJurassic = function(dino){
+    if(dino.period === 'Jurassic'){
+      return true
+    }else return false
+  }
+
+  const isCretaceous = function(dino){
+    if(dino.period === 'Cretaceous'){
+      return true
+    }else return false
+  }
 
 
 /***********************
@@ -9,6 +77,46 @@
  **********************/
 
 
+
+ const singularizeDinos = function(dinos){
+   
+      
+      return dinos.map(makeSingular)
+  
+ }
+
+ const truncateDinos = function(dinos){
+
+  dinos = dinos.map(truncateSpecies)
+  return dinos
+ }
+
+ const makeAllExtinct = function(dinos){
+
+  dinos = dinos.map(makeExtinct)
+  return dinos
+ }
+
+ const carnivoresOnly = function(dinos){
+
+  dinos = dinos.filter(isCarnivore)
+  return dinos
+ }
+
+
+ const extinctOnly = function(dinos){
+
+  dinos = dinos.filter(isExtinct)
+  return dinos
+ }
+
+ const triassicOnly = function(dinos){
+  
+  dinos = dinos.filter(isTriassic)
+  return dinos
+
+ }
+ 
 
 /*********************************
  * TEST SETUP CODE - DON'T TOUCH!*
